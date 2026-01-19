@@ -1,0 +1,96 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "visual-primacy-bias"
+version = "1.0.0"
+description = "Reproduction code for Visual Primacy Bias experiments"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Anonymous"}
+]
+keywords = ["multimodal", "llm", "safety", "adversarial", "vision-language"]
+
+dependencies = [
+    # Core ML
+    "torch>=2.1.0",
+    "torchvision>=0.16.0",
+    "transformers>=4.36.0",
+    "accelerate>=0.25.0",
+    
+    # Vision
+    "Pillow>=10.0.0",
+    "opencv-python>=4.8.0",
+    "scipy>=1.11.0",
+    
+    # APIs
+    "openai>=1.6.0",
+    
+    # Data & Config
+    "numpy>=1.24.0",
+    "pyyaml>=6.0",
+    
+    # Visualization
+    "matplotlib>=3.7.0",
+    "scikit-learn>=1.3.0",
+    
+    # Utilities
+    "tqdm>=4.65.0",
+    "loguru>=0.7.0",
+]
+
+[project.optional-dependencies]
+full = [
+    # Additional ML
+    "bitsandbytes>=0.41.0",
+    
+    # Text processing
+    "sentence-transformers>=2.2.0",
+    "python-Levenshtein>=0.21.0",
+    
+    # OCR (optional)
+    "pytesseract>=0.3.10",
+    "paddleocr>=2.7.0",
+    "paddlepaddle>=2.5.0",
+    "google-cloud-vision>=3.4.0",
+    
+    # Additional visualization
+    "seaborn>=0.12.0",
+    "plotly>=5.15.0",
+    
+    # Noise generation
+    "noise>=1.2.2",
+]
+
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "hypothesis>=6.92.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+run-attack = "scripts.run_attack:main"
+run-analysis = "scripts.run_analysis:main"
+run-defense-eval = "scripts.run_defense_eval:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*", "scripts*"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "W", "I", "N"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --tb=short"
