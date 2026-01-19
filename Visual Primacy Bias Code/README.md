@@ -1,4 +1,4 @@
-# Visual Primacy Bias: Experiment Reproduction Code
+# Visual Primacy Bias: Experiment Code
 
 Official implementation for the paper:
 
@@ -167,3 +167,4 @@ Place in `data/` directory following the loader conventions.
 ## License
 
 This code is released under the MIT License for academic research purposes.
+
